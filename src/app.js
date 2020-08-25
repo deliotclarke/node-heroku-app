@@ -63,20 +63,25 @@ app.get('/weather', (req, res) => {
           error,
         });
       }
-      forecast(latitude, longitude, (error, forecastData) => {
-        if (error) {
-          return res.send({
-            message: 'There was a problem.',
-            error,
+      forecast(
+        latitude,
+        longitude,
+        (error, { forecastString, forecastImg }) => {
+          if (error) {
+            return res.send({
+              message: 'There was a problem.',
+              error,
+            });
+          }
+
+          res.send({
+            forecast: forecastString,
+            forecastImg,
+            location,
+            address: queryString,
           });
         }
-
-        res.send({
-          forecast: forecastData,
-          location,
-          address: queryString,
-        });
-      });
+      );
     });
   }
 });
