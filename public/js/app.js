@@ -4,11 +4,13 @@ const errorMessage = document.getElementById('error-message');
 const fullError = document.getElementById('full-error');
 const locationPara = document.getElementById('location');
 const forecast = document.getElementById('forecast');
+const forecastDiv = document.getElementById('forecast-div');
 
 weatherForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const userInput = search.value;
-  forecast.textContent = 'Loading...';
+  location.textContent = 'Loading...';
+  forecast.textContent = '';
   fetch(`/weather?address=${userInput}`)
     .then((res) => res.json())
     .then((data) => {
@@ -19,6 +21,11 @@ weatherForm.addEventListener('submit', (e) => {
       } else {
         locationPara.textContent = data.location;
         forecast.textContent = data.forecast;
+        if (data.forecastImg) {
+          const forecastImg = document.createElement('img');
+          forecastImg.setAttribute('src', data.forecastImg);
+          forecastDiv.appendChild(forecastImg);
+        }
       }
     });
 });
