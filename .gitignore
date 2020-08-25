@@ -1,0 +1,6 @@
+/node_modules
+
+src/utils/locationKey.js
+src/utils/weatherKey.js
+
+*.DS_Store
