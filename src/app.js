@@ -6,6 +6,14 @@ const forecast = require('./utils/forecast');
 
 const app = express();
 
+console.log('no value for FOO:', process.env.FOO);
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+console.log('new value for FOO:', process.env.FOO);
+
 const port = process.env.PORT || 3000;
 
 // Define paths for Express config

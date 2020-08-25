@@ -3,4 +3,6 @@
 src/utils/locationKey.js
 src/utils/weatherKey.js
 
+.env
+
 *.DS_Store
