@@ -5,7 +5,6 @@ const forecast = (lat, long, callback) => {
   const url = `http://api.weatherstack.com/current?access_key=${weatherKey}&query=${lat},${long}&units=f`;
   request({ url, json: true }, (error, { body }) => {
     const { errorRes, current: forecast } = body;
-    console.log(body);
     if (body.error) {
       callback(body.error.type);
     } else if (errorRes) {
