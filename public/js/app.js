@@ -14,8 +14,12 @@ weatherForm.addEventListener('submit', (e) => {
   fetch(`/weather?address=${userInput}`)
     .then((res) => res.json())
     .then((data) => {
+      forecast.textContent = '';
+      locationPara.textContent = '';
+      if (forecastDiv.childElementCount > 2) {
+        forecastDiv.removeChild(forecastDiv.lastChild);
+      }
       if (data.error) {
-        forecast.textContent = '';
         errorMessage.textContent = data.message;
         fullError.textContent = data.error;
       } else {
